@@ -7,7 +7,7 @@ const cors = require("cors");
 
 // after as per request we load the required configuration 
 
-global.nbfc="default";
+global.database="default";
 
 const app = express();
 
