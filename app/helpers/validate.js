@@ -73,3 +73,12 @@ exports.mandate_data = (data)=>{
    }
 
 }
+
+
+/*
+   
+  1. validate keys 
+  2. check required properties
+  3. validate data properties
+
+*/

@@ -1,4 +1,7 @@
 module.exports = {
+    master_database:'bom_thearks_in_drqdnxtr',
+    data_store:'data_store',
+    partner_id:'PART16907405468914867653654',
     // auth data
     SECRET_KEY:"Xv0ni837ZBAQYcN5t0ZGnJKTFqmtzeTE",
     SECRET_IV:"0ed9c2aa27a31693",
@@ -11,6 +14,11 @@ module.exports = {
             get_dashboard_count:"yes",
             incomplete_loan_meta:"yes",
             disbursal_details:"yes", 
+            get_application_details:"yes",
+            get_user_list:"yes",
+            get_user_details:"yes",
+            get_nbfc_list:"yes",
+            get_nbfc_details:"yes"
         },
         transact:{
             upload_document :"yes",

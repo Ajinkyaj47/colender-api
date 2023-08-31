@@ -1,16 +1,14 @@
 module.exports = app => {
-  const colender = require("../controllers/colender.controller.js");
+    const colender = require("../controllers/colender.controller.js");
 
-  var router = require("express").Router();
+    var router = require("express").Router();
 
- // transact
- router.post('/transact',colender.transact)
+    // transact
+    router.post('/transact',colender.transact)
 
- 
- // enquire
- router.post('/enquire',colender.enquire)
+    // enquire
+    router.post('/enquire',colender.enquire)
 
- app.use('/api/', router);
+    app.use('/api/', router);
  
 };
-   
