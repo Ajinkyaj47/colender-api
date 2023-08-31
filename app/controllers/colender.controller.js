@@ -1,13 +1,14 @@
-// transact controller
+// transact controller 
 exports.transact = (req,res) => {
 
   // set global nbfc name to load database configuration
   if(req.headers["partner-id"]){
     global.database=req.headers["partner-id"];
+    global.nbfc=req.headers["partner-id"];
   }
    
   // load required modules 
-  const Transact = require("../models/transact.model.js");
+  const Transact = require("../models/Transact.model.js");
   const Validate = require("../helpers/validate.js");
 
   // set headers parameters into data
@@ -47,6 +48,7 @@ const partner_config = require(`../config/all-partners/${data.nbfc}.js`);
 
         // dyanamic function call
         let functionName = `Transact.${key}`; 
+         
         eval(functionName)(req.body, (err, data) => {
           if (err){
             res.status(500).send({
@@ -65,8 +67,7 @@ const partner_config = require(`../config/all-partners/${data.nbfc}.js`);
             }
             console.log(response);
             res.send(response);
-          }
-           
+          }          
         });   
       }      
       }else{
@@ -134,13 +135,8 @@ const partner_config = require(`../config/all-partners/${data.nbfc}.js`);
 
         // dyanamic function call
         let functionName = `Enquire.${key}`; 
-        let req_data={
-          form_data:req.body,
-          partner_config:partner_config
-        }
-
-        console.log(req_data);
-        eval(functionName)(req_data, (err, data) => {
+         
+        eval(functionName)(req.body, (err, data) => {
           if (err){
             res.status(500).send({
               message:
