@@ -21,25 +21,3 @@ module.exports = {
   },
 };
 
-
-/* const mysql = require("mysql");
-const knex = require('knex');
-
-const dbConfig = require(`../config/all-partners/${global.database}.js`);
-
-var mysqlconnection = mysql.createPool({
-  host: dbConfig.HOST,
-  user: dbConfig.USER,
-  password: dbConfig.PASSWORD,
-  database: dbConfig.DB,
-  multipleStatements: true
-});
-
-// Create a Knex instance
-const connection = knex({
-  client: 'mysql',
-  connection: mysqlconnection,
-});
-
-module.exports = connection;
- */

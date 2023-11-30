@@ -49,10 +49,10 @@ module.exports = {
             years_of_business:"",
             advance_instalments:"",
             instalments_total:"",
-            mobile_number:{required:true},
-            first_name:{required:true},
+            mobile_number:"required",
+            first_name:"required",
             middle_name:"",
-            last_name:{required:true},
+            last_name:"required",
             gender:"",
             residential_status:"",
             date_of_birth:"",
@@ -128,22 +128,22 @@ module.exports = {
             total_current_value:"",
             margin:"",
             nbfc_data:{
-                nbfc_interest_share:{required:true},
-                nbfc_late_payment_share:{required:true},
-                nbfc_penalty_interest_share:{required:true},
-                nbfc_pf_share:{required:true},
-                nbfc_pf_amount:{required:true},
-                nbfc_principal_share:{required:true},
-                nbfc_sanction_amount:{required:true},
+                nbfc_interest_share:"required",
+                nbfc_late_payment_share:"required",
+                nbfc_penalty_interest_share:"required",
+                nbfc_pf_share:"required",
+                nbfc_pf_amount:"required",
+                nbfc_principal_share:"required",
+                nbfc_sanction_amount:"required",
               },
-            bank_data:{
-                bank_interest_share:{required:true},
-                bank_late_payment_share:{required:true},
-                bank_penalty_interest_share:{required:true},
-                bank_pf_share:{required:true},
-                bank_pf_amount:{required:true},
-                bank_principal_share:{required:true},
-                bank_sanction_amount:{required:true},
+            bank_data:{  
+                bank_interest_share:"required",
+                bank_late_payment_share:"required",
+                bank_penalty_interest_share:"required",
+                bank_pf_share:"required",
+                bank_pf_amount:"required",
+                bank_principal_share:"required",
+                bank_sanction_amount:"required",
             },
             coapplicant_details:{
                 name:"",
@@ -155,22 +155,23 @@ module.exports = {
                 relation:"",
                 pancard:"",
                 cibil_score:""
-            },
-            disbursal_details:{
-                loan_id:{required:true},
-                nach_id:{required:true},
-                nach_type:{required:true},
-                nach_status:{required:true},
-                nach_stage:{required:true},
-                source:{required:true},
-                mandate:{required:true},
-                umrn:{required:true},
-                nach_amount:{required:true},
-                agreement_type:{required:true},
-                agreement_vendor:{required:true},
-                agreement_status:{required:true},
-                agreement_stage:{required:true} 
-            } 
-        }
+            }
+            
+        },
+        disbursal_details:{
+        loan_id:{required:true},
+        nach_id:{required:true},
+        nach_type:{required:true},
+        nach_status:{required:true},
+        nach_stage:{required:true},
+        source:{required:true},
+        mandate:{required:true},
+        umrn:{required:true},
+        nach_amount:{required:true},
+        agreement_type:{required:true},
+        agreement_vendor:{required:true},
+        agreement_status:{required:true},
+        agreement_stage:{required:true} 
+        } 
     }
 };

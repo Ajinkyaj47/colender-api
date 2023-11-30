@@ -8,7 +8,7 @@ exports.transact = (req,res) => {
   }
    
   // load required modules 
-  const Transact = require("../models/Transact.model.js");
+  const Transact = require("../models/transact.model.js");
   const Validate = require("../helpers/validate.js");
 
   // set headers parameters into data
@@ -48,24 +48,35 @@ const partner_config = require(`../config/all-partners/${data.nbfc}.js`);
 
         // dyanamic function call
         let functionName = `Transact.${key}`; 
+        let response='';
          
-        eval(functionName)(req.body, (err, data) => {
+        eval(functionName)(req.body,partner_config, (err, data) => {
+          console.log(data)
           if (err){
             res.status(500).send({
               message:
-                err.message || "Some error occurred while retrieving applications."
+                err.message || "Something went wrong"
             });
           }
           else{
             // set response as per question and answer structure
             let req_data = req.body[key];
-            let response={
+
+            if(data.status=='error'){
+              response={
+                [key]:{
+                    question:req_data,
+                    error:data
+                  }
+              }
+            }else{ 
+            response={
               [key]:{
                   question:req_data,
                   answer:data
                 }
             }
-            console.log(response);
+          }
             res.send(response);
           }          
         });   
