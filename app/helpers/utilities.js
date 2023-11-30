@@ -1,7 +1,7 @@
+const { json } = require("express");
 
 // convert json into meta key and meta values 
 exports.convert_meta_keys_values=(jsonObject)=>{
-
         // get bank data
         let bank_data = jsonObject.setup_loan.bank_data;
         
@@ -17,19 +17,38 @@ exports.convert_meta_keys_values=(jsonObject)=>{
             meta_key,
             meta_value
         }));
-        
-        
-          nbfc_data = Object.entries(nbfc_data).map(([meta_key, meta_value]) => ({
-            meta_key,
-            meta_value
-        }));
 
-          bank_data = Object.entries(bank_data).map(([meta_key, meta_value]) => ({
-            meta_key,
-            meta_value
-        })); 
-
-        console.log(loan_application_data)
-        console.log(nbfc_data)
-        console.log(bank_data) 
+       
+        return loan_application_data;
 }
+
+exports.check_basic_validations=(keys_config,form_data)=>{
+   var ack = checkRequiredFields(keys_config,form_data)
+    return ack;
+}
+
+// Function to check if required fields are present
+function checkRequiredFields(jsonStructure, jsonData) { 
+     for (const key in jsonStructure) {  
+        var required_check = jsonStructure[key];
+         if(required_check==="required"){
+             // Check if the field is required and exists in the second JSON
+            if (!jsonData || !jsonData.hasOwnProperty(key) || jsonData[key] === "") {
+                let ack = {
+                    status_code:"403",
+                    status:"error",
+                    message:`Required field "${key}" is missing or empty.`
+                  }  
+                return ack; 
+            }
+        } 
+      }
+        let ack = {
+            status_code:"200",
+            status:"success",
+            message:"validation successful done"
+          }
+          return ack;
+  }
+ 
+

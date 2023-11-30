@@ -5,11 +5,14 @@ module.exports = {
   development: {
     client: 'mysql',
     connection: {
+      
       host: dbConfig.HOST,
       user: dbConfig.USER,
       password: dbConfig.PASSWORD,
       database: dbConfig.DB,
-      multipleStatements: true
+      multipleStatements: true,
+      useNullAsDefault: true, // 
+
     },
     pool: {
       min: 2,

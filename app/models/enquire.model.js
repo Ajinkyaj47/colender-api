@@ -1,9 +1,7 @@
 const mysql = require("mysql");
 const knex = require('knex');
-
 const config = require("./db.js");
 const knexInstance = knex(config.development);
-
 
 // constructor
 const Enquire = function(enquire) {
@@ -51,7 +49,7 @@ Enquire.incomplete_loan_meta = (form_data,result) => {
 
 // get dashboard count
 Enquire.get_dashboard_count = (form_data,result) => {
-
+  
   knexInstance.select(
     'loan_status',
     knexInstance.raw('count(*) as total'),
@@ -157,6 +155,7 @@ Enquire.get_user_list=function(form_data,result){
  
 };
 
+//get user details
 Enquire.get_user_details=function(form_data,result){
 
   const partner_config = require(`../config/all-partners/${global.nbfc}.js`);
@@ -221,6 +220,7 @@ Enquire.get_user_details=function(form_data,result){
   
 };
 
+//get nbfc list
 Enquire.get_nbfc_list=function(form_data,result){
 
   const partner_config = require(`../config/all-partners/${global.nbfc}.js`);
@@ -286,32 +286,29 @@ q7 as (
       return; 
 };  
 
+//get nbfc details
 Enquire.get_nbfc_details=function(form_data,result){
 
   const partner_config = require(`../config/all-partners/${global.nbfc}.js`);
   const table_name = `${partner_config.master_database}.common_meta` ;
 
-    //global.nbfc
-    const rawQuery = `select meta_key, meta_value from  ${table_name} where  
-    object_id = '${partner_config.partner_id}' and coll_id='${form_data.get_nbfc_details.nbfc_id}' 
-    and coll_type='partner_nbfc'`;
-
-      knexInstance.raw(rawQuery).then((rows)=>{
+      knexInstance.select()
+      .from(`${table_name}`)
+      .where('object_id',`${partner_config.partner_id}`)
+      .andWhere('coll_id',`${form_data.get_nbfc_details.nbfc_id}`)
+      .then((rows)=>{
         let ack = {
           status_code:"200",
           status:"success",
-          message:"Nbfc Details get successfully",
-          data: rows[0]
+          message:"Nbfc Details get successfullyy",
+          data: rows
         }
         result(null, ack); 
         return;
       })
       .catch((error) => {
         console.error(error);
-      })
-
-      return;
-  
+      });   
 };
 
 // export data
